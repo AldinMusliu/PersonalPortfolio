@@ -1,0 +1,25 @@
+<figure class="frame">
+  @if (failed()) {
+    <div class="placeholder">
+      <svg viewBox="0 0 24 24" width="56" height="56" aria-hidden="true" fill="currentColor">
+        <path
+          d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.4 0-8 2.7-8 6v2h16v-2c0-3.3-3.6-6-8-6Z"
+        />
+      </svg>
+      <figcaption>
+        <span class="placeholder__title">Profilbild folgt</span>
+        <span class="placeholder__path">{{ src() }}</span>
+      </figcaption>
+    </div>
+  } @else {
+    <img
+      [src]="src()"
+      [alt]="alt()"
+      width="900"
+      height="1350"
+      fetchpriority="high"
+      decoding="async"
+      (error)="onError()"
+    />
+  }
+</figure>

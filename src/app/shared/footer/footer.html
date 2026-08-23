@@ -1,0 +1,35 @@
+<footer class="footer section--dark" id="kontakt">
+  <div class="container footer__inner">
+    <p class="eyebrow">Kontakt</p>
+
+    <div class="footer__lead">
+      <h2 class="footer__title">Get in touch</h2>
+      <a class="footer__mail" [href]="'mailto:' + site.contact.email">
+        {{ site.contact.email }}
+      </a>
+    </div>
+
+    <dl class="footer__meta">
+      <div>
+        <dt>Standort</dt>
+        <dd>{{ site.contact.location }}</dd>
+      </div>
+      <div>
+        <dt>Verfügbarkeit</dt>
+        <dd>{{ site.contact.availability }}</dd>
+      </div>
+      <div>
+        <dt>Profile</dt>
+        <dd class="footer__socials">
+          @for (social of site.socials; track social.label) {
+            <a [href]="social.url" target="_blank" rel="noopener noreferrer">{{ social.label }}</a>
+          }
+        </dd>
+      </div>
+    </dl>
+
+    <div class="footer__bottom">
+      <span class="footer__copy">© {{ year }} {{ site.name }}</span>
+    </div>
+  </div>
+</footer>

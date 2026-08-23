@@ -1,0 +1,41 @@
+<header class="header">
+  <nav class="nav" [class.nav--open]="menuOpen()" aria-label="Hauptnavigation">
+    <a class="nav__brand" routerLink="/" (click)="closeMenu()">
+      {{ site.name }}
+      <span class="nav__brand-role">{{ site.role }}</span>
+    </a>
+
+    <button
+      class="nav__toggle"
+      type="button"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="nav-menu"
+      (click)="toggleMenu()"
+    >
+      <span class="visually-hidden">Menü {{ menuOpen() ? 'schliessen' : 'öffnen' }}</span>
+      <span class="nav__toggle-bar" aria-hidden="true"></span>
+      <span class="nav__toggle-bar" aria-hidden="true"></span>
+    </button>
+
+    <ul class="nav__list" id="nav-menu">
+      @for (link of links; track link.path) {
+        <li>
+          <a
+            class="nav__link"
+            [routerLink]="link.path"
+            routerLinkActive="nav__link--active"
+            [routerLinkActiveOptions]="{ exact: link.exact }"
+            (click)="closeMenu()"
+          >
+            {{ link.label }}
+          </a>
+        </li>
+      }
+      <li>
+        <a class="nav__cta" [href]="'mailto:' + site.contact.email" (click)="closeMenu()">
+          Kontakt
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>

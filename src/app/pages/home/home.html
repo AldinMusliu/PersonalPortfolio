@@ -1,0 +1,77 @@
+<!-- ===== Hero ========================================================== -->
+<section class="section section--light hero">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <p class="eyebrow">Portfolio · {{ site.contact.location }}</p>
+
+      <h1 class="hero__headline">
+        @for (line of site.heroLines; track line) {
+          <span class="hero__line">{{ line }}</span>
+        }
+      </h1>
+
+      <p class="hero__intro">{{ site.heroIntro }}</p>
+
+      <div class="hero__actions">
+        <a class="button button--primary" routerLink="/projekte">Projekte ansehen</a>
+        <a class="button button--ghost" routerLink="/skills">Tech-Stack</a>
+      </div>
+    </div>
+
+    <div class="hero__media">
+      <app-profile-image [src]="site.profileImage" [alt]="'Porträt von ' + site.name" />
+    </div>
+  </div>
+</section>
+
+<!-- ===== Kurzprofil ==================================================== -->
+<section class="section section--light about">
+  <div class="container">
+    <div class="about__panel">
+      <div class="about__text">
+        <p class="eyebrow">Kurz zu mir</p>
+        <p class="about__paragraph">{{ site.aboutText }}</p>
+      </div>
+
+      <dl class="about__facts">
+        @for (fact of facts; track fact.label) {
+          <div class="about__fact">
+            <dt>{{ fact.label }}</dt>
+            <dd>{{ fact.value }}</dd>
+          </div>
+        }
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Projekt-Vorschau ============================================== -->
+<section class="section section--light projects">
+  <div class="container">
+    <header class="projects__header">
+      <div>
+        <p class="eyebrow">Auswahl</p>
+        <h2 class="section-title">Meine Projekte</h2>
+      </div>
+      <a class="projects__link" routerLink="/projekte">Alle Details →</a>
+    </header>
+
+    <div class="projects__grid">
+      @for (project of projects; track project.slug; let i = $index) {
+        <app-project-card [project]="project" [index]="i" variant="preview" />
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ===== Werdegang ===================================================== -->
+<section class="section section--dark career">
+  <div class="container career__inner">
+    <header class="career__header">
+      <p class="eyebrow">Werdegang</p>
+      <h2 class="section-title">Mein Weg in die Applikations&shy;entwicklung</h2>
+    </header>
+
+    <app-timeline [entries]="timeline" />
+  </div>
+</section>

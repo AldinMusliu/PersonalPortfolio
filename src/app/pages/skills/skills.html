@@ -1,0 +1,24 @@
+<section class="section section--dark skills">
+  <div class="container">
+    <header class="skills__header">
+      <p class="eyebrow">Tech-Stack</p>
+      <h1 class="section-title">Womit ich arbeite</h1>
+      <p class="skills__intro text-muted">
+        Ein Überblick über die Technologien, die ich in der Schule und eigenen Projekten
+        einsetze, gegliedert nach Frontend, Backend, Datenbanken sowie Tools und
+        Deployment.
+      </p>
+    </header>
+
+    <div class="skills__grid">
+      @for (category of categories; track category.title) {
+        <app-skill-card [category]="category" />
+      }
+    </div>
+
+    <p class="skills__legend">
+      <span class="skills__legend-badge">Lernphase</span>
+      heisst: gerade erst begonnen, noch keine praktische Projekterfahrung.
+    </p>
+  </div>
+</section>

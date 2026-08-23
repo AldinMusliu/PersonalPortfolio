@@ -1,0 +1,68 @@
+<article
+  class="project"
+  [class.project--full]="variant() === 'full'"
+  [class.project--reversed]="reversed() && variant() === 'full'"
+>
+  <div class="project__visual">
+    @if (project().image && !imageFailed()) {
+      <img [src]="project().image" [alt]="'Screenshot: ' + project().title" (error)="onImageError()" />
+    } @else {
+      <div class="project__placeholder">
+        <span class="project__placeholder-number">{{ number() }}</span>
+        <span class="project__placeholder-text">Screenshot folgt</span>
+      </div>
+    }
+    <span class="project__status" [attr.data-status]="project().status">{{ statusLabel() }}</span>
+  </div>
+
+  <div class="project__body">
+    <h3 class="project__title">
+      <svg class="project__arrow" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+        <path
+          d="M7 17 17 7M9 7h8v8"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+      {{ project().title }}
+    </h3>
+
+    <p class="project__text">
+      {{ variant() === 'full' ? project().description : project().tagline }}
+    </p>
+
+    @if (variant() === 'full') {
+      <dl class="project__meta">
+        <div>
+          <dt>Rolle</dt>
+          <dd>{{ project().role }}</dd>
+        </div>
+        <div>
+          <dt>Stand</dt>
+          <dd>{{ project().timeframe }}</dd>
+        </div>
+      </dl>
+    } @else {
+      <p class="project__timeframe">{{ project().timeframe }}</p>
+    }
+
+    <ul class="project__stack">
+      @for (tech of project().stack; track tech) {
+        <li>{{ tech }}</li>
+      }
+    </ul>
+
+    @if (project().links.length > 0) {
+      <ul class="project__links">
+        @for (link of project().links; track link.url) {
+          <li>
+            <a [href]="link.url" target="_blank" rel="noopener noreferrer">{{ link.label }} →</a>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+</article>

@@ -1,0 +1,38 @@
+<article class="card">
+  <header class="card__header">
+    <h3 class="card__title">{{ category().title }}</h3>
+    <p class="card__description">{{ category().description }}</p>
+  </header>
+
+  <ul class="card__skills">
+    @for (skill of sortedSkills(); track skill.name) {
+      <li class="skill" [class.skill--learning]="isLearning(skill.level)">
+        <span class="skill__circle">
+          <app-icon [slug]="skill.icon" [size]="26" />
+        </span>
+
+        <div class="skill__info">
+          <span class="skill__name">{{ skill.name }}</span>
+
+          @if (isLearning(skill.level)) {
+            <span class="skill__badge">{{ levelLabel(skill.level) }}</span>
+            <span
+              class="skill__bar skill__bar--learning"
+              role="img"
+              [attr.aria-label]="skill.name + ': Lernphase – noch keine Projekterfahrung'"
+            ></span>
+          } @else {
+            <span class="skill__meta">{{ levelLabel(skill.level) }}</span>
+            <span
+              class="skill__bar"
+              role="img"
+              [attr.aria-label]="skill.name + ': ' + levelLabel(skill.level)"
+            >
+              <span class="skill__bar-fill" [style.width]="levelWidth(skill.level)"></span>
+            </span>
+          }
+        </div>
+      </li>
+    }
+  </ul>
+</article>

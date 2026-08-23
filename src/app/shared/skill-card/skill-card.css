@@ -1,0 +1,139 @@
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: start;
+  gap: var(--space-md);
+  padding: var(--card-padding);
+  background-color: var(--color-card-bg);
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.card__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.card__title {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: var(--fs-card-title);
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary-dark);
+}
+
+.card__description {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--fs-body);
+  color: var(--color-text-muted);
+}
+
+/* --- Einzelne Technologie ------------------------------------------------ */
+
+/* Kein margin-top:auto – sonst schiebt es die Liste in Karten mit wenigen
+   Eintraegen ans untere Ende (Backend stand neben Frontend und riss auf).
+   Alle Karten beginnen jetzt direkt unter der Beschreibung. */
+.card__skills {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.skill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.skill__circle {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-icon-circle);
+  color: var(--color-text-primary-dark);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+.skill:hover .skill__circle {
+  background-color: var(--color-accent);
+}
+
+.skill__info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.skill__name {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--color-text-primary-dark);
+}
+
+.skill__meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--color-text-label);
+}
+
+.skill__bar {
+  display: block;
+  height: 3px;
+  margin-top: 5px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.skill__bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background-color: var(--color-accent);
+}
+
+/* --- Sonderfall Lernphase ------------------------------------------------
+   Flutter und Dart sind gerade erst begonnen. Ein niedrig gefuellter Balken
+   wuerde faelschlich nach "Grundlagen" aussehen, deshalb: Badge statt Stufe
+   und ein gestrichelter, komplett leerer Balken.
+   ------------------------------------------------------------------------ */
+
+.skill__badge {
+  width: fit-content;
+  padding: 2px 10px;
+  border: 1px dashed var(--color-text-label);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.skill__bar--learning {
+  background-color: transparent;
+  background-image: repeating-linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.26) 0 6px,
+    transparent 6px 12px
+  );
+}
+
+/* Lernphase-Icons bleiben zurueckhaltend – kein Accent-Hover. */
+.skill--learning .skill__circle {
+  color: var(--color-text-muted);
+}
+
+.skill--learning:hover .skill__circle {
+  background-color: var(--color-icon-circle);
+  color: var(--color-text-primary-dark);
+}

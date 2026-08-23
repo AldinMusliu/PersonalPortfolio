@@ -1,0 +1,29 @@
+<section class="section section--light projects">
+  <div class="container">
+    <header class="projects__header">
+      <p class="eyebrow">Projekte</p>
+      <h1 class="section-title">Woran ich gerade arbeite</h1>
+      <p class="projects__intro">
+        Zwei Projekte, beide noch nicht abgeschlossen. Ich zeige sie trotzdem, weil sich
+        daran besser zeigen lässt, wie ich arbeite: aus einem echten Bedarf heraus,
+        mit Fokus auf Datenmodell und Nachvollziehbarkeit.
+      </p>
+    </header>
+
+    <div class="projects__list">
+      @for (project of projects; track project.slug; let i = $index) {
+        <app-project-card [project]="project" [index]="i" variant="full" [reversed]="i % 2 === 1" />
+      }
+    </div>
+
+    <aside class="projects__cta">
+      <p class="projects__cta-text">
+        Interesse an einem der Projekte oder an einer Zusammenarbeit während des
+        Jahrespraktikums?
+      </p>
+      <a class="projects__cta-link" [href]="'mailto:' + site.contact.email">
+        {{ site.contact.email }} →
+      </a>
+    </aside>
+  </div>
+</section>

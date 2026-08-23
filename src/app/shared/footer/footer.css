@@ -1,0 +1,97 @@
+.footer {
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-primary-dark);
+  padding-block: clamp(64px, 8vw, 120px) var(--space-lg);
+}
+
+.footer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* --- Kopfbereich --------------------------------------------------------- */
+
+.footer__lead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footer__title {
+  font-size: var(--fs-section);
+  font-weight: 400;
+}
+
+.footer__mail {
+  font-family: var(--font-display);
+  font-size: var(--fs-lead);
+  color: var(--color-text-muted);
+  width: fit-content;
+  border-bottom: 1px solid var(--color-border-subtle);
+  padding-bottom: 4px;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.footer__mail:hover {
+  color: var(--color-text-primary-dark);
+  border-color: var(--color-accent);
+}
+
+/* --- Metadaten ----------------------------------------------------------- */
+
+.footer__meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--grid-gap);
+  margin: 0;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.footer__meta dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-label);
+  margin-bottom: var(--space-2xs);
+}
+
+.footer__meta dd {
+  margin: 0;
+  font-size: var(--fs-small);
+  color: var(--color-text-muted);
+  line-height: 1.5;
+}
+
+.footer__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.footer__socials a {
+  transition: color var(--transition);
+}
+
+.footer__socials a:hover {
+  color: var(--color-text-primary-dark);
+}
+
+/* --- Abschluss ----------------------------------------------------------- */
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: center;
+  justify-content: flex-end;
+  gap: var(--space-xs);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.footer__copy {
+  font-family: var(--font-body);
+  font-size: var(--fs-label);
+  color: var(--color-text-label);
+}

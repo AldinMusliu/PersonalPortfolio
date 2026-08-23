@@ -1,0 +1,163 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  padding: var(--space-xs) var(--container-pad);
+  pointer-events: none;
+}
+
+.nav {
+  pointer-events: auto;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: 10px 10px 10px 24px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(20, 20, 20, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  color: var(--color-text-primary-dark);
+  /* sticky + backdrop-filter ist auf Windows/Chrome die haeufigste Ursache
+     fuer Scroll-Schlieren. Eine explizit angeforderte Compositing-Ebene
+     verhindert, dass darunterliegender Inhalt mitgezeichnet wird. */
+  will-change: transform;
+  transform: translateZ(0);
+  isolation: isolate;
+}
+
+/* --- Markenname ---------------------------------------------------------- */
+
+.nav__brand {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.2;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__brand-role {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-label);
+}
+
+/* --- Links --------------------------------------------------------------- */
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav__link {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  transition: color var(--transition), background-color var(--transition);
+}
+
+.nav__link:hover {
+  color: var(--color-text-primary-dark);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav__link--active {
+  color: var(--color-text-primary-dark);
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.nav__cta {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  padding: 10px 22px;
+  margin-left: 6px;
+  border-radius: var(--radius-button);
+  background-color: var(--color-accent);
+  color: var(--color-text-primary-dark);
+  transition: transform var(--transition), filter var(--transition);
+}
+
+.nav__cta:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.12);
+}
+
+/* --- Mobile-Toggle ------------------------------------------------------- */
+
+.nav__toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0 12px;
+  border-radius: var(--radius-pill);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.nav__toggle-bar {
+  display: block;
+  height: 1.5px;
+  width: 100%;
+  background-color: currentColor;
+  transition: transform var(--transition), opacity var(--transition);
+}
+
+.nav--open .nav__toggle-bar:first-child {
+  transform: translateY(3.25px) rotate(45deg);
+}
+
+.nav--open .nav__toggle-bar:last-child {
+  transform: translateY(-3.25px) rotate(-45deg);
+}
+
+@media (max-width: 760px) {
+  .nav {
+    flex-wrap: wrap;
+    border-radius: var(--radius-card);
+    padding: 12px 12px 12px 20px;
+  }
+
+  .nav__toggle {
+    display: flex;
+  }
+
+  .nav__list {
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height var(--transition), padding-top var(--transition);
+  }
+
+  .nav--open .nav__list {
+    max-height: 340px;
+    padding-top: var(--space-xs);
+  }
+
+  .nav__link,
+  .nav__cta {
+    display: block;
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .nav__cta {
+    margin-top: 6px;
+    text-align: center;
+  }
+}

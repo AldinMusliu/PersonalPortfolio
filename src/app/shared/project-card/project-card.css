@@ -1,0 +1,207 @@
+:host {
+  display: block;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Detailfassung: Bild und Text nebeneinander, abwechselnd gespiegelt. */
+.project--full {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: center;
+}
+
+/* Gespiegelte Variante: Text links, Bild rechts. */
+.project--reversed > .project__visual {
+  order: 2;
+}
+
+/* --- Bild / Platzhalter -------------------------------------------------- */
+
+.project__visual {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-image);
+  overflow: hidden;
+  background-color: #ededed;
+  /* Eigener Stacking- und Malkontext: nichts kann ausserhalb gezeichnet werden. */
+  isolation: isolate;
+  contain: paint;
+}
+
+.project__visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+  /* Vorab auf eine eigene Compositing-Ebene, damit der Hover-Zoom
+     keine Reste im Hintergrund hinterlaesst. */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.project:hover .project__visual img {
+  transform: scale(1.03) translateZ(0);
+}
+
+.project__placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2xs);
+  background-color: #ededed;
+  border: 1px dashed var(--color-border);
+  border-radius: inherit;
+}
+
+.project__placeholder-number {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 5rem);
+  font-weight: 300;
+  color: var(--color-border);
+  line-height: 1;
+}
+
+.project__placeholder-text {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-label);
+}
+
+/* --- Status-Badge -------------------------------------------------------- */
+
+.project__status {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.06em;
+  /* Bewusst ohne backdrop-filter: ein zweiter Blur innerhalb eines
+     overflow:hidden-Containers mit Radius erzeugt auf Windows/Chrome
+     Schlieren beim Scrollen. Deckende Farbe sieht identisch aus. */
+  background-color: #141414;
+  color: var(--color-text-primary-dark);
+}
+
+.project__status[data-status='in-entwicklung'] {
+  background-color: var(--color-accent);
+}
+
+/* --- Textteil ------------------------------------------------------------ */
+
+.project__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.project__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-project);
+  letter-spacing: -0.02em;
+}
+
+.project__arrow {
+  flex-shrink: 0;
+  color: var(--color-accent);
+  transition: transform var(--transition);
+}
+
+.project:hover .project__arrow {
+  transform: translate(3px, -3px);
+}
+
+.project__text {
+  font-family: var(--font-body);
+  font-weight: 300;
+  font-size: var(--fs-body);
+  color: #4a4a4a;
+  max-width: 62ch;
+}
+
+.project__timeframe {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--color-text-label);
+}
+
+/* --- Metadaten (nur Detailfassung) --------------------------------------- */
+
+.project__meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--space-sm);
+  margin: 0;
+  padding-block: var(--space-sm);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.project__meta dt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-label);
+  margin-bottom: 6px;
+}
+
+.project__meta dd {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  line-height: 1.5;
+}
+
+/* --- Tech-Stack ---------------------------------------------------------- */
+
+.project__stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+.project__stack li {
+  padding: 6px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: #3a3a3a;
+}
+
+.project__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.project__links a {
+  font-family: var(--font-display);
+  font-size: var(--fs-small);
+  border-bottom: 1px solid var(--color-accent);
+  padding-bottom: 2px;
+}
+
+@media (max-width: 900px) {
+  .project--full {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,24 @@
+<ol class="timeline">
+  @for (entry of entries(); track entry.title) {
+    <li
+      class="entry"
+      [class.entry--current]="entry.current"
+      [class.entry--upcoming]="entry.upcoming"
+    >
+      <span class="entry__marker" aria-hidden="true"></span>
+
+      <div class="entry__year">
+        {{ entry.year }}
+        @if (entry.current) {
+          <span class="entry__badge">aktuell</span>
+        }
+      </div>
+
+      <div class="entry__content">
+        <h3 class="entry__title">{{ entry.title }}</h3>
+        <p class="entry__place">{{ entry.place }}</p>
+        <p class="entry__description">{{ entry.description }}</p>
+      </div>
+    </li>
+  }
+</ol>

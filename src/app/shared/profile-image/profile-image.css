@@ -1,0 +1,56 @@
+/* Das Porträt liegt im Hochformat (900x1350, also 2:3) vor.
+   Der Rahmen ist bewusst 4:5 statt 1:1 – bei einem quadratischen Zuschnitt
+   würde `object-fit: cover` die vertikale Mitte nehmen und den Kopf abschneiden. */
+.frame {
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  border-radius: var(--radius-image);
+  overflow: hidden;
+  background-color: #ededed;
+  isolation: isolate;
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Nach oben verschoben, damit Kopf und Oberkörper im Bild bleiben.
+     Wert anpassen, falls der Ausschnitt anders sitzen soll. */
+  object-position: center 15%;
+}
+
+.placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  color: var(--color-text-label);
+  background-color: #ededed;
+  border: 1px dashed var(--color-border);
+  border-radius: inherit;
+  text-align: center;
+  padding: var(--space-sm);
+}
+
+.placeholder figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.placeholder__title {
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-text-label);
+}
+
+.placeholder__path {
+  font-family: var(--font-mono);
+  font-size: var(--fs-label);
+  color: var(--color-border);
+  word-break: break-all;
+}

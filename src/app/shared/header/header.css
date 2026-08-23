@@ -93,34 +93,75 @@
   filter: brightness(1.12);
 }
 
-/* --- Mobile-Toggle ------------------------------------------------------- */
+/* --- Mobile-Toggle -------------------------------------------------------
+   Selbst gebautes Hamburger-Icon: drei Balken, absolut positioniert in einem
+   Kasten von 20x14px. Absolute Positionierung statt Flex-Gap, weil sich damit
+   der Kreuzungspunkt exakt ausrechnen laesst:
+
+     Balken 1  Mitte bei y = 1px   ->  offen: +6px  ->  y = 7px
+     Balken 2  Mitte bei y = 7px   ->  offen: ausgeblendet
+     Balken 3  Mitte bei y = 13px  ->  offen: -6px  ->  y = 7px
+
+   Beide aeusseren Balken landen exakt auf der Mittelachse und ergeben
+   gegenlaeufig rotiert ein sauberes X.
+   ------------------------------------------------------------------------ */
 
 .nav__toggle {
   display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
+  place-items: center;
   width: 44px;
   height: 44px;
-  padding: 0 12px;
   border-radius: var(--radius-pill);
   background-color: rgba(255, 255, 255, 0.08);
+  transition: background-color var(--transition);
+}
+
+.nav__toggle:hover {
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.nav__toggle-icon {
+  position: relative;
+  display: block;
+  width: 20px;
+  height: 14px;
 }
 
 .nav__toggle-bar {
-  display: block;
-  height: 1.5px;
+  position: absolute;
+  left: 0;
   width: 100%;
+  height: 2px;
+  border-radius: 2px;
   background-color: currentColor;
-  transition: transform var(--transition), opacity var(--transition);
+  transition: transform 0.28s var(--ease), opacity 0.18s var(--ease);
 }
 
-.nav--open .nav__toggle-bar:first-child {
-  transform: translateY(3.25px) rotate(45deg);
+.nav__toggle-bar:nth-child(1) {
+  top: 0;
 }
 
-.nav--open .nav__toggle-bar:last-child {
-  transform: translateY(-3.25px) rotate(-45deg);
+.nav__toggle-bar:nth-child(2) {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.nav__toggle-bar:nth-child(3) {
+  bottom: 0;
+}
+
+/* Geoeffnet: aeussere Balken kreuzen sich, mittlerer blendet aus. */
+.nav--open .nav__toggle-bar:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav--open .nav__toggle-bar:nth-child(2) {
+  opacity: 0;
+  transform: translateY(-50%) scaleX(0.2);
+}
+
+.nav--open .nav__toggle-bar:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 @media (max-width: 760px) {
@@ -131,7 +172,7 @@
   }
 
   .nav__toggle {
-    display: flex;
+    display: grid;
   }
 
   .nav__list {

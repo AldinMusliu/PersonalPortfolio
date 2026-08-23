@@ -43,12 +43,12 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 
-# Umgebungsvariablen und Secrets – niemals ins Repo
+# Umgebungsvariablen
 .env
 .env.*
 !.env.example
 *.pem
 *.key
 
-# Bild-Originale: nur lokales Archiv, wird fuer den Build nicht gebraucht
+# Bild-Originale
 /design

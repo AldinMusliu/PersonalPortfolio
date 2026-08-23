@@ -13,8 +13,11 @@
       (click)="toggleMenu()"
     >
       <span class="visually-hidden">Menü {{ menuOpen() ? 'schliessen' : 'öffnen' }}</span>
-      <span class="nav__toggle-bar" aria-hidden="true"></span>
-      <span class="nav__toggle-bar" aria-hidden="true"></span>
+      <span class="nav__toggle-icon" aria-hidden="true">
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+        <span class="nav__toggle-bar"></span>
+      </span>
     </button>
 
     <ul class="nav__list" id="nav-menu">

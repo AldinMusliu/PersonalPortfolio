@@ -83,10 +83,16 @@
 
 .footer__bottom {
   display: flex;
-  flex-wrap: center;
+  /* war "center" – ein ungueltiger Wert fuer flex-wrap, den der Browser
+     stillschweigend ignoriert hat. */
+  flex-wrap: wrap;
   justify-content: flex-end;
   gap: var(--space-xs);
   padding-top: var(--space-md);
+  /* Platz fuer den schwebenden Nach-oben-Button (bis 52px hoch, bis 32px
+     Abstand zum Rand). Ohne diese Reserve liegt er auf jeder Breite
+     unter ca. 1400px genau auf der Copyright-Zeile. */
+  padding-bottom: 56px;
   border-top: 1px solid var(--color-border-subtle);
 }
 

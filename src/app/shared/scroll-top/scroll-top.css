@@ -1,0 +1,60 @@
+/* Der Button schwebt fest ueber dem Inhalt, unabhaengig vom Scroll-Stand.
+   z-index 40: ueber dem Seiteninhalt, aber unter dem Header (50) und dem
+   Sprung-Link (100). */
+.scroll-top {
+  position: fixed;
+  right: clamp(16px, 4vw, 32px);
+  /* env(safe-area-inset-bottom) haelt Abstand zur Home-Leiste auf iPhones
+     ohne Home-Button – dort waere der Button sonst schwer treffbar. */
+  bottom: calc(clamp(16px, 4vw, 32px) + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+
+  display: grid;
+  place-items: center;
+  /* 48px: WCAG empfiehlt mindestens 44px Kantenlaenge fuer Touch-Ziele. */
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-pill);
+
+  background-color: var(--color-accent);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+
+  /* Ausgangszustand: unsichtbar und nicht anklickbar. visibility statt
+     display, damit ein- und ausblenden animiert werden kann. */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.92);
+  transition:
+    opacity 0.28s var(--ease),
+    transform 0.28s var(--ease),
+    visibility 0.28s,
+    background-color var(--transition);
+}
+
+.scroll-top--visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.scroll-top:hover {
+  background-color: #3b2ce0;
+}
+
+.scroll-top:active {
+  transform: translateY(0) scale(0.94);
+}
+
+.scroll-top__icon {
+  /* Optischer Ausgleich: der Pfeil wirkt sonst leicht zu tief im Kreis. */
+  margin-top: -1px;
+}
+
+/* Ab Tablet etwas groesser – dort ist mehr Platz und der Zeiger praeziser. */
+@media (min-width: 761px) {
+  .scroll-top {
+    width: 52px;
+    height: 52px;
+  }
+}

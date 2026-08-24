@@ -1,0 +1,25 @@
+<button
+  class="scroll-top"
+  [class.scroll-top--visible]="visible()"
+  type="button"
+  (click)="scrollToTop()"
+  [attr.tabindex]="visible() ? null : -1"
+  [attr.aria-hidden]="visible() ? null : 'true'"
+>
+  <span class="visually-hidden">Nach oben scrollen</span>
+  <svg
+    class="scroll-top__icon"
+    viewBox="0 0 24 24"
+    width="20"
+    height="20"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2.2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M12 19V6" />
+    <path d="M5.5 12.5 12 6l6.5 6.5" />
+  </svg>
+</button>

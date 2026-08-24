@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "icons": "node tools/generate-icons.mjs"
+    "icons": "node tools/generate-icons.mjs",
+    "favicon": "node tools/build-favicon.mjs"
   },
   "private": true,
   "packageManager": "npm@11.9.0",
@@ -18,6 +19,7 @@
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
+    "@vercel/speed-insights": "^2.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -26,6 +28,7 @@
     "@angular/cli": "^21.2.21",
     "@angular/compiler-cli": "^21.2.0",
     "prettier": "^3.8.1",
+    "puppeteer-core": "^25.8.0",
     "simple-icons": "^16.28.0",
     "typescript": "~5.9.2"
   }

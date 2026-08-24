@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>AM – Aldin Musliu</title>
+  <!-- Hintergrund: Schwarz wie die dunklen Sektionen der Seite. -->
+  <rect width="64" height="64" rx="13" fill="#000000" />
+  <!-- Monogramm bewusst als gezeichnete Striche, nicht als <text>:
+       Ein Textelement wuerde je nach installierten Schriften auf dem
+       Geraet des Besuchers anders aussehen. Als Pfade ist es ueberall
+       identisch. Farbe: --color-accent aus styles.css. -->
+  <g fill="none" stroke="#4a3aff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 47 L18 17 L27 47" />
+    <path d="M12.5 37 H23.5" />
+    <path d="M37 47 V17 L46 31 L55 17 V47" />
+  </g>
+</svg>

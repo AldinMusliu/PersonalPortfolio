@@ -9,7 +9,13 @@
       name="description"
       content="Portfolio von Aldin Musliu – angehender Applikationsentwickler EFZ mit Berufsmaturität Wirtschaft. Projekte, Tech-Stack und Werdegang."
     />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <!-- SVG zuerst: moderne Browser nehmen es und stellen es in jeder
+         Groesse gestochen scharf dar. Die .ico dient als Rueckfallebene
+         (aeltere Browser, Windows-Verknuepfungen) und enthaelt fuer 16px
+         ein eigenes, pixelgenau gezeichnetes Motiv. -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
+    <meta name="theme-color" content="#000000" />
 
     <!-- Google Fonts: Inter (Headlines/Navigation), DM Sans (Fliesstext), IBM Plex Mono (Akzent-Labels) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
